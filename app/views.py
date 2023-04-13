@@ -905,6 +905,15 @@ def edit_side_table(request):
     return Response()
 
 @api_view(['POST'])
+def crape(request):
+    rq = side_page.objects.filter(id = request.POST.get('id'))
+    if rq.count() :
+        rq = side_page.objects.get(id = request.POST.get('id'))
+        rq.name = request.POST.get('table_name')
+        rq.save()
+    return Response()
+
+@api_view(['POST'])
 def delete_side_table(request):
     rq = side_page.objects.filter(id = request.POST.get('id'))
     if rq.count() :
